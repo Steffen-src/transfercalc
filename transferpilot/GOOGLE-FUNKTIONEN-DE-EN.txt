@@ -1,0 +1,209 @@
+BAUVERIS TransferCalc 0.9.3 — Google-Funktionen / Google features
+Stand / Checked: 29 October 2026. Preise können sich ändern / Prices may change.
+
+DEUTSCH
+
+1. Voraussetzungen und eigene Konten
+WordPress 6.5+, PHP 8.1+, eigenes Google-Cloud-Projekt mit aktivierter Abrechnung.
+Festpreisstrecken funktionieren ohne Google. Google-Funktionen sind optional.
+Jeder Käufer verwendet sein eigenes Konto und eigene Schlüssel und trägt die
+Nutzungskosten. BAUVERIS-Zugangsdaten und Testdaten sind nicht Teil des Downloads.
+Gehe zu TransferPilot > Einrichtung > Integration & freie Straßenroute.
+Hinterlege passende öffentliche Datenschutz- und Nutzungsbedingungen-URLs.
+Der Betreiber muss Google-Nutzung, Rechtsgrundlage, Datenübertragung und etwaige
+Einwilligungen für seinen Einsatz klären. Der Kartenknopf ersetzt keine komplette
+Consent-Management-Lösung. Adresssuchen starten nach Eingabe, nicht erst am Kartenknopf.
+
+2. Straßenroute
+Routes API aktivieren; Serverschlüssel auf Routes API und möglichst Server-IP
+beschränken. Im Feld Google Routes API-Schlüssel hinterlegen, nicht im Chat.
+Freie Straßenberechnung wählen. Ohne gültige Antwort wird kein Fantasiepreis erzeugt.
+
+3. Adressvorschläge (optional)
+Places API (New) aktivieren. Separaten Serverschlüssel auf diese API und möglichst
+Server-IP beschränken. Im Feld Places API (New)-Schlüssel hinterlegen und
+Adressvorschläge aktivieren, speichern und Formular neu laden.
+Ab 3 Zeichen, nach 450 ms Schreibpause: bis zu 5 internationale Vorschläge für
+Abholung UND Ziel. Pfeiltasten/Enter zur Auswahl, Escape/Tab zum Schließen,
+Touch-Auswahl möglich. Freie Adresseingabe funktioniert weiterhin.
+Die ausgewählte Vorschlagsadresse wird für die Routenberechnung verwendet;
+keine postalische Adressvalidierung oder Garantie einer exakten Hauszufahrt.
+Es werden keine Place Details abgefragt. Jede Suche wird einzeln abgerechnet,
+keine Session-Token-Rabatte. Mehrere Schreibpausen können mehrere Anfragen auslösen.
+Schutz: 60 Suchen je IP/15 Minuten und 1.000 je Website/UTC-Tag. Diese
+WordPress-Transient-Limits sind nicht atomar und keine garantierte Kostensperre.
+Google-Kontingente, Budgets und Überwachung im eigenen Konto zusätzlich einrichten.
+Budgets sind Warnungen, nicht automatisch harte Ausgabenobergrenzen.
+
+4. Verkehr (optional; standardmäßig aus)
+Verkehrsabhängige Route aktivieren und speichern. Keine zusätzliche Verkehrs-API
+erforderlich: Routes API nutzt TRAFFIC_AWARE, eine höher bepreiste Pro-Funktion.
+Die gewählte Abholzeit wird aus der WordPress-Zeitzone korrekt nach UTC übertragen.
+Hin- und Rückfahrt verwenden ihre eigenen Zeiten. Zeitzone des Betriebes unbedingt
+richtig einstellen. Reisende sehen die Zeitzone des Betriebes, keine automatische
+Zeitzonenerkennung je Adresse. Zukunftstermine verwenden Verkehrsprognosen mit
+historischen und je nach zeitlicher Nähe aktuellen Daten; keine Ankunftsgarantie.
+Kein zeitbasierter Preis und kein automatischer Stauzuschlag. Eine verkehrsbedingt
+andere Route kann andere Kilometer und damit einen anderen Kilometerpreis ergeben.
+Festpreisstrecken ändern sich nicht. Bei Fehler keine stille Standardroute als
+scheinbar erfolgreiche Verkehrsprognose anzeigen.
+
+5. Karte (optional; standardmäßig aus)
+Maps JavaScript API aktivieren. Einen SEPARATEN Browserschlüssel erstellen:
+API-Beschränkung ausschließlich Maps JavaScript API; Website-Beschränkung über
+HTTP-Referrer, z.B. https://ihre-domain.de/* und explizit benötigte www-Variante.
+Lokaler Test: http://127.0.0.1:8172/* separat erlauben. Produktionsschlüssel danach
+auf echte Domains begrenzen. Niemals einen geheimen Routes-/Places-Serverschlüssel
+im Feld Maps-JavaScript-Browserschlüssel eintragen! Der Browserschlüssel ist
+technisch öffentlich und muss durch Referrer- UND API-Beschränkungen geschützt sein.
+Karte aktivieren, Schlüssel eintragen, speichern und Formular neu laden.
+Nach einer freien Preisberechnung erscheint „Route auf Karte anzeigen“.
+Erst dieser Klick lädt Google Maps und überträgt IP-/Browserdaten an Google.
+Die Karte zeigt die von Routes API gelieferte Geometrie, keine neu erfundene
+Verbindung. Rückroute erscheint, falls berechnet. Grün: Abholung; Dunkel: Ziel.
+Keine Karte bei Festpreisstrecken ohne Straßenberechnung. Keine Navigation und
+keine farbige Staukarte. Tastaturbedienbarer Knopf, kooperative Touch-Gesten.
+Wenn die Karte fehlschlägt, bleiben Preis und Fahrtanfrage verwendbar.
+Keine Kartengeometrie in gespeicherten Anfragen oder signierten Anfrage-Tokens;
+Streckenverlauf wird nur im aktuellen Berechnungsergebnis gehalten.
+
+6. Kosten und Abschalten
+Kein Google-Monatsabo erforderlich; nutzungsabhängige Abrechnung pro SKU.
+Aktuell: Autocomplete Requests 10.000 freie Ereignisse pro Monat, danach erste
+Preisstaffel 2,83 USD / 1.000. Dynamic Maps 10.000 freie Kartenereignisse pro Monat,
+danach erste Preisstaffel 7 USD / 1.000. Währungsumrechnung, Steuern, Kontomodell
+und Preisstaffeln können den Betrag ändern. Routes Essentials und Pro haben
+eigene Freimengen/Preise; Verkehrsaufrufe nicht zur Autocomplete-Freimenge zählen.
+Keine Garantie „kostenlos“: gemeinsame Projektnutzung und bereits verbrauchte
+Freimengen berücksichtigen. Wenige Vorführanfragen können innerhalb der noch
+verfügbaren Freimengen kostenfrei sein. Testguthaben nicht pauschal voraussetzen:
+Verfügbarkeit/Gültigkeit und Produktberechtigung im eigenen Rechnungskonto prüfen.
+Zum Abschalten zuerst die jeweilige Option deaktivieren und speichern. Google
+Cloud > APIs und Dienste > aktivierte API > Deaktivieren. Schlüssel in Google
+widerrufen/löschen und in WordPress über die Entfernen-Checkbox entfernen.
+Bereits entstandene Kosten bleiben fällig. Andere Anwendungen vor dem Deaktivieren
+gemeinsam verwendeter APIs prüfen. Ein Projekt oder Rechnungskonto muss hierfür
+nicht vollständig gelöscht werden. Kein kostenpflichtiges Vollkonto-Upgrade
+allein für diese Anleitung durchführen; Google kann eigene Voraussetzungen setzen.
+
+7. Prüfung vor Verkauf und nach Einrichtung
+Beide Adressfelder prüfen: gültige/keine Ergebnisse, Tastatur, Touch, Netzfehler,
+alte Antworten nach neuer Eingabe, DE/EN, Mobil/Tablet/Desktop. Google-Attribution
+sichtbar lassen. Mit LAX > Santa Monica Pier und einem zulässigen zukünftigen
+Datum echte Route berechnen. Verkehr an/aus vergleichen; Rückfahrt und Zeitzone
+prüfen. Karte vor Klick ohne Google-JavaScript-Netzwerkzugriff, nach Klick mit
+Streckenlinie testen. Schlüsselbeschränkungen und Fehlerfall prüfen. Anschließend
+fiktive Anfrage senden und Mail/Postfach überprüfen. Kein Test ist eine echte Buchung.
+Aktueller Prüfstatus: RELEASE-TESTS-DE-EN.txt. Echte Places-, Verkehrs- und
+Maps-Prüfungen einschließlich Rückroute bestanden; dortige Grenzen beachten.
+
+ENGLISH
+
+1. Requirements and ownership
+WordPress 6.5+, PHP 8.1+, your own billed Google Cloud project. Fixed-price routes
+do not require Google. Each buyer supplies their own accounts/keys and pays their
+provider charges. No BAUVERIS credentials or operator test data ship in this ZIP.
+Open TransferPilot > Setup > integrations; add public privacy and terms URLs.
+The operator must assess legal basis, Google disclosures and consent requirements.
+The map button is not a complete consent-management system. Address searches start
+while typing, independently of the map button.
+
+2. Road routes
+Enable Routes API. Restrict its server key to Routes API and, where possible, your
+server IP. Enter it only in the protected Routes key setting, never in chat.
+Enable free road routing. Invalid provider results never produce an invented fare.
+
+3. Optional address suggestions
+Enable Places API (New). Create a separate server key restricted to that API and
+where possible server IPs. Enter it in the Places key field, enable suggestions,
+save, and reload the calculator. Both pickup and destination offer up to five
+international suggestions after 3 characters and a 450 ms pause. Use arrow keys /
+Enter, Escape / Tab or touch. Manual addresses remain supported. The selected
+prediction text is used for routing; this is not postal validation or a guarantee
+of the precise entrance. No Place Details calls are made. Each search is billed
+separately without session-token discounts; multiple pauses can trigger requests.
+Best-effort limits: 60/IP/15 minutes and 1,000/site/UTC day. WordPress transient
+counters are not atomic or a guaranteed financial cap. Set Google quotas, billing
+alerts and monitoring too; budget alerts do not automatically stop expenditure.
+
+4. Optional traffic (off by default)
+Enable traffic-aware routing and save. No additional API: Routes API uses the
+higher-priced TRAFFIC_AWARE Pro feature. Pickup/return times are separately
+converted from the operator's WordPress timezone to UTC, including DST. Configure
+the timezone correctly; addresses do not automatically select their own timezone.
+Future departures use traffic forecasts with historical and, nearer departure,
+current data. This is not a guaranteed arrival time or continuous live tracking.
+No automatic congestion/time surcharge. Different route distance may change a
+kilometre-based fare; fixed-price routes remain unchanged. Failures are not silently
+presented as successful traffic forecasts.
+
+5. Optional map (off by default)
+Enable Maps JavaScript API. Create a SEPARATE browser key restricted ONLY to that
+API and the actual website HTTP referrers, e.g. https://your-domain.com/* plus the
+required www variant. Allow http://127.0.0.1:8172/* only for local tests. Remove local
+referrers from production keys. NEVER enter a Routes/Places server key in the map
+browser-key field. Browser keys are necessarily public; protect them using BOTH
+API and referrer restrictions. Enable the map, enter its key, save and reload.
+After calculating a road quote, click “Show route on map”. Only this click loads
+Google Maps and sends browser/IP information to Google. The map draws geometry
+from the calculated route, including a return leg when available. Green: pickup;
+dark: destination. No map for fixed fares without road calculation. No navigation
+or coloured traffic overlay. Keyboard-accessible button and cooperative gestures.
+Map failure does not block quotes/enquiries. Geometry is not persisted in enquiries
+or signed enquiry tokens; it exists only in the current quote result.
+
+6. Costs and disabling
+No Google monthly subscription is required; usage is charged per SKU. Currently:
+Autocomplete Requests: 10,000 free events/month, then first paid tier USD 2.83 per
+1,000. Dynamic Maps: 10,000 free events/month, then USD 7 per 1,000 in the first
+tier. Currency conversion, tax, account arrangements and volume tiers may differ.
+Routes Essentials/Pro have separate free caps and prices; traffic does not share
+the autocomplete allowance. Do not promise free use: allow for other project usage
+and exhausted caps. A short walkthrough may be free within remaining allowances.
+Do not assume trial credit is applicable; check eligibility and expiry in billing.
+Disable the plugin option and save, then disable the API in Google Cloud > APIs &
+Services. Revoke/delete its Google key and remove it using the WordPress checkbox.
+Already incurred charges remain payable. Check other apps sharing the API before
+disabling it. No need to delete the entire project/billing account. Do not upgrade
+to a paid full account solely because of this guide; Google sets prerequisites.
+
+7. Verification and release status
+Test both address inputs, keyboard/touch, no results, network errors, stale responses,
+DE/EN and responsive layouts. Keep attribution visible. Test a real LAX > Santa
+Monica Pier trip at a valid future time, traffic off/on, return timing/timezone,
+click-to-load map, route line, key restrictions and provider failures. Submit a
+clearly fictitious enquiry and confirm mailbox delivery. This is not a real booking.
+Current status: RELEASE-TESTS-DE-EN.txt. Actual Places, traffic and Maps tests
+including return geometry passed in the documented setups; limits still apply.
+
+Sources / Quellen (recheck before enabling / vor Aktivierung erneut prüfen):
+https://developers.google.com/maps/billing-and-pricing/pricing
+https://developers.google.com/maps/documentation/places/web-service/place-autocomplete
+https://developers.google.com/maps/documentation/routes/config_trade_offs
+https://developers.google.com/maps/documentation/javascript/load-maps-js-api
+https://developers.google.com/maps/api-security-best-practices
+
+29.10.2026: Echter Places-Frontendtest bestanden: Google-Vorschläge für Los Angeles International Airport und Santa Monica Pier erhalten; Abholung per Pfeiltaste/Enter und Ziel per Klick übernommen, Listen schließen korrekt. Feste ARIA-Feldbezeichnungen ergänzt. Maps-/Verkehr-Livetest sowie Touch-/Mobilmatrix weiterhin offen.
+
+Live Places frontend test passed: LAX and Santa Monica Pier suggestions, keyboard pickup selection and pointer destination selection. Maps/traffic live tests and mobile/touch matrix remain pending.
+
+29.10.2026 — ECHTER MAPS-/VERKEHRS-FRONTENDTEST BESTANDEN:
+LAX > Santa Monica Pier, 31.10.2026 12:00 in angezeigter Betriebszeitzone
+Europe/Berlin. Business, 1 Person, 0 Gepäck: 24,3 km, ca. 21 Minuten,
+85,63 USD. Google-Verkehrsprognose zur gewählten Abholzeit erhalten.
+Vor Kartenklick kein Maps-JavaScript-Script im DOM; nach Klick echte Google-Karte
+mit berechneter Streckenlinie sichtbar, keine Konsolenfehler im Testtab.
+Anfrageformular blieb verfügbar; keine Anfrage bei diesem Test versendet.
+Hinweistext bei aktivem Verkehr korrigiert. Keine Messung tatsächlicher Stauabweichung
+und keine bestätigte Rückfahrts-/Touch-/Mobilmatrix der neuen Karte. Ein Test
+belegt keine allgemeine Verfügbarkeit oder garantiert kostenlose Nutzung.
+Operator-Konfiguration/Schlüssel nur in lokaler WordPress-Datenbank, nicht im ZIP.
+
+LIVE MAPS / TRAFFIC FRONTEND TEST PASSED, 29 October 2026:
+LAX > Santa Monica Pier, 31 October 12:00 in configured Europe/Berlin timezone.
+Business, 1 passenger, 0 bags: 24.3 km, approx. 21 minutes, USD 85.63.
+Traffic-aware forecast received. No Maps JS script before map click; actual Google
+map and calculated route line after click. No console errors observed. Enquiry
+form remained available; no enquiry submitted in this test. Actual congestion
+difference, return-map and mobile/touch matrix not yet verified. Earlier pending
+live-test statements above are superseded only for this specific scenario.

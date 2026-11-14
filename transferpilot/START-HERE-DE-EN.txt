@@ -1,0 +1,50 @@
+BAUVERIS TransferCalc 0.9.3 — START HERE / HIER BEGINNEN
+
+DEUTSCH
+1. Äußere Download-ZIP entpacken. Nur transferpilot-0.9.3.zip unter WordPress >
+   Plugins > Installieren > Plugin hochladen installieren und aktivieren.
+2. TransferPilot > Einrichtung: Sprache, Betrieb, Empfänger, Währung und eigene
+   öffentliche Datenschutz-/Nutzungsseiten eintragen. Eigene Inhalte werden nicht
+   automatisch übersetzt. Keine lokalen QA-Rechtstexte übernehmen.
+3. WordPress > Einstellungen > Allgemein: benannte Betriebszeitzone einstellen.
+   Alle Termine verwenden diese eine Zeitzone; keine Adress-Zeitzonenautomatik.
+4. Orte und Fahrzeuge mit Kapazitäten/Tarifen speichern, dann Festpreisstrecken
+   und Extras anlegen. [transferpilot] in einen Shortcode-Block einfügen.
+5. Google ist optional. Festpreise ohne Google. Straßenroute: Routes API;
+   Vorschläge: Places API (New); Karte: Maps JavaScript API mit separatem
+   referrerbeschränktem Browserschlüssel. Verkehr nutzt Routes API Pro.
+   Anleitung/Kosten: GOOGLE-FUNKTIONEN-DE-EN.txt. Optionen sind ab Werk aus;
+   keine BAUVERIS-Schlüssel, Empfänger oder Tarife mitgeliefert.
+6. Eigenen Mailversand einrichten (MAIL-SETUP-DE-EN.txt). Testanfrage senden,
+   Dashboard und tatsächlichen Postfacheingang prüfen, auch Spam. Mailannahme
+   ist keine Zustellgarantie. Eigene DKIM/SPF/DMARC-Konfiguration prüfen.
+7. Cache für Formular/REST ausschließen; zuverlässigen Cron und eigene Backups
+   konfigurieren. Datenschutzhinweise, Aufbewahrung und eigene Tarife prüfen.
+8. Keine bestätigte Buchung, keine Zahlung, keine Verfügbarkeitsreservierung.
+   Fahrt persönlich bestätigen. Support: steffen@bauveris.de. Keine Schlüssel senden.
+
+ENGLISH
+1. Unzip the outer download. Upload ONLY transferpilot-0.9.3.zip in WordPress >
+   Plugins > Add New > Upload Plugin, then activate.
+2. TransferPilot > Setup: configure language, business, recipient, currency and
+   your own public privacy/terms pages. Operator content is not automatically
+   translated. Development test notices are not production legal policies.
+3. Set a named timezone in WordPress > Settings > General. All trips use this one
+   operator timezone; no automatic per-address timezone detection.
+4. Save locations and vehicles/capacities/fares, then fixed routes and extras.
+   Add [transferpilot] to a Shortcode block.
+5. Google is optional: Routes API for road routes; Places API (New) for suggestions;
+   Maps JavaScript API for maps with a separate referrer-restricted browser key.
+   Traffic uses Routes API Pro. GOOGLE-FUNKTIONEN-DE-EN.txt explains costs/setup.
+   Options are off by default; no BAUVERIS keys, recipient or operator fares ship.
+6. Configure email delivery (MAIL-SETUP-DE-EN.txt). Submit a test, verify dashboard
+   storage AND actual mailbox receipt/spam. Mail acceptance is not guaranteed
+   delivery. Check your own DKIM/SPF/DMARC setup.
+7. Exclude calculator/REST from caching; arrange reliable cron, retention and
+   backups. Review your legal notices, provider use and fare rules.
+8. Enquiries do not confirm bookings, collect payments or reserve availability.
+   Confirm rides personally. Support: steffen@bauveris.de. Never send secrets.
+
+Plugin code: GPL-2.0-or-later (LICENSE.txt).
+Supportbedingungen / Support terms: SUPPORT-DE-EN.txt.
+Prüfungen und Grenzen / Tests and limits: RELEASE-TESTS-DE-EN.txt.

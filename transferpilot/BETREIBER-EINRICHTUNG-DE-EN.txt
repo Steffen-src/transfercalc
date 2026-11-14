@@ -1,0 +1,22 @@
+Betreiber-Einrichtung / Operator setup – 29.10.2026
+
+Produktnamensvorschlag: BAUVERIS TransferCalc. Technische Plugin-ID bleibt transferpilot, damit vorhandene Einstellungen erhalten bleiben. Eine Websuche nach dem genauen Gesamtnamen ergab keinen direkten Treffer; das ist keine Markenfreigabe.
+
+Vor Einsatz mit echten Kunden:
+1. Eigene oeffentlich erreichbare Nutzungsbedingungen und Datenschutzseite erstellen und deren URLs im Plugin eintragen. Keine lokalen QA-Texte als fertige Rechtstexte uebernehmen.
+2. Betrieb, Kontakt, Rechtsgrundlagen, Dienstleister, Datenuebermittlungen, Aufbewahrung, Betroffenenrechte und Buchungsbedingungen konkret ergaenzen. Google Maps Bedingungen und Datenschutzerklaerung verlinken. Quellen: https://developers.google.com/maps/documentation/routes/policies
+3. Eigenes Google-Projekt und auf Routes API eingeschraenkten Schluessel nutzen. Keine BAUVERIS-Zugangsdaten in Kundenprojekte uebernehmen. Kontingente begrenzen; Budgetmeldungen allein stoppen keine Nutzung.
+4. Eigenen Mailanbieter konfigurieren und Eingang einer echten Testanfrage im Postfach pruefen. wp_mail-Erfolg allein bestaetigt keine Zustellung.
+5. Preise, Kapazitaeten, Zeitzone, Nachtzuschlaege sowie Hin- und Rueckfahrt mit den eigenen Tarifen pruefen.
+
+English:
+Provide your own publicly accessible terms and privacy policy and configure their URLs. Identify the operator, processing purposes and legal bases, providers, transfers, retention, rights and actual booking terms. Link Google's terms and privacy policy. Use your own restricted Google key and mail provider. Verify actual mailbox receipt and test your own fares. Local test notices are not production legal policies. Never copy development credentials or notification recipients into a customer installation.
+
+Pruefung 29.10.2026: echter Google-API-Verbindungstest sowie UI-Berechnung von Hin-/Rueckfahrt mit einmaligem Extra bestanden. Die lokalen Testhinweise sind nur fuer Entwicklung bestimmt. Echte Resend-Mailzustellung bestätigt (Spam). Google-Kontingente und Mailzustellung muss jeder Betreiber im eigenen Konto prüfen. Aktuelle Tests: RELEASE-TESTS-DE-EN.txt.
+
+
+0.9.3: Optionale Adressvorschläge, Verkehrsprognose und Klick-Streckenkarte.
+Optional address suggestions, traffic forecasts and click-to-load route map.
+Einrichtung, Kosten, Abschalten und offene Tests: GOOGLE-FUNKTIONEN-DE-EN.txt.
+Vorherige Hinweise ohne Autocomplete/Karten gelten für Versionen bis 0.9.2.
+Earlier no-autocomplete/no-map statements apply to versions through 0.9.2.
